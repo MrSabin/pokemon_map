@@ -88,3 +88,5 @@ local_settings.py
 .env
 db.sqlite3
 media/
+.venv
+pokemon_entities/migrations/0001_initial.py
