@@ -1,5 +1,4 @@
 import folium
-import json
 
 from django.http import HttpResponseNotFound, HttpRequest
 from django.shortcuts import render
@@ -80,6 +79,7 @@ def show_pokemon(request, pokemon_id):
     requested_pokemon = {
         "title_ru": pokemon.title,
         "img_url": request.build_absolute_uri(pokemon.photo.url),
+        "description": pokemon.description,
         "entities": PokemonEntity.objects.filter(
             pokemon=pokemon, appeared_at__lt=local_time, disappeared_at__gt=local_time
         ).values(),
