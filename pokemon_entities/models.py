@@ -9,7 +9,11 @@ class Pokemon(models.Model):
     photo = models.ImageField(upload_to="pokemons", null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     previous_evolution = models.ForeignKey(
-        "self", on_delete=models.CASCADE, null=True, blank=True
+        "self",
+        on_delete=models.CASCADE,
+        related_name="next_evolutions",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
