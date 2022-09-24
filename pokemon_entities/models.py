@@ -3,12 +3,14 @@ from django.utils import timezone
 
 
 class Pokemon(models.Model):
-    title = models.CharField(max_length=200)
+    title_ru = models.CharField(max_length=200)
+    title_en = models.CharField(max_length=200, null=True, blank=True)
+    title_jp = models.CharField(max_length=200, null=True, blank=True)
     photo = models.ImageField(upload_to="pokemons", null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.title_ru
 
 
 class PokemonEntity(models.Model):

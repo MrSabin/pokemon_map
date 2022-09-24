@@ -54,7 +54,7 @@ def show_all_pokemons(request):
                 "img_url": request.build_absolute_uri(pokemon.photo.url)
                 if pokemon.photo
                 else DEFAULT_IMAGE_URL,
-                "title_ru": pokemon.title,
+                "title_ru": pokemon.title_ru,
             }
         )
 
@@ -77,7 +77,9 @@ def show_pokemon(request, pokemon_id):
         return HttpResponseNotFound("<h1>Такой покемон не найден</h1>")
 
     requested_pokemon = {
-        "title_ru": pokemon.title,
+        "title_ru": pokemon.title_ru,
+        "title_en": pokemon.title_en,
+        "title_jp": pokemon.title_jp,
         "img_url": request.build_absolute_uri(pokemon.photo.url),
         "description": pokemon.description,
         "entities": PokemonEntity.objects.filter(
