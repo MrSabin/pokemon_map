@@ -1,7 +1,7 @@
 import folium
 
 from django.http import HttpResponseNotFound, HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
 from pokemon_entities.models import Pokemon, PokemonEntity
 from django.core.exceptions import ObjectDoesNotExist
@@ -71,10 +71,7 @@ def show_all_pokemons(request):
 def show_pokemon(request, pokemon_id):
     local_time = localtime()
 
-    try:
-        pokemon = Pokemon.objects.get(id=pokemon_id)
-    except ObjectDoesNotExist:
-        return HttpResponseNotFound("<h1>Такой покемон не найден</h1>")
+    pokemon = get_object_or_404(Pokemon, id=pokemon_id)
 
     requested_pokemon = {
         "title_ru": pokemon.title_ru,
