@@ -5,16 +5,15 @@ from django.utils import timezone
 class Pokemon(models.Model):
     title_ru = models.CharField(max_length=200, verbose_name="Название (RU)")
     title_en = models.CharField(
-        max_length=200, null=True, blank=True, verbose_name="Название (EN)"
+        max_length=200, blank=True, verbose_name="Название (EN)"
     )
     title_jp = models.CharField(
-        max_length=200, null=True, blank=True, verbose_name="Название (JP)"
+        max_length=200, blank=True, verbose_name="Название (JP)"
     )
     photo = models.ImageField(
         upload_to="pokemons", null=True, blank=True, verbose_name="Изображение"
     )
-    description = models.TextField(
-        null=True, blank=True, verbose_name="Описание")
+    description = models.TextField(blank=True, verbose_name="Описание")
     previous_evolution = models.ForeignKey(
         "self",
         on_delete=models.CASCADE,
