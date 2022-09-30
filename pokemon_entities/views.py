@@ -79,7 +79,7 @@ def show_pokemon(request, pokemon_id):
         "title_jp": pokemon.title_jp,
         "img_url": request.build_absolute_uri(pokemon.photo.url),
         "description": pokemon.description,
-        "entities": PokemonEntity.objects.filter(
+        "entities": pokemon.entities.filter(
             pokemon=pokemon, appeared_at__lt=local_time, disappeared_at__gt=local_time
         ).values(),
     }
